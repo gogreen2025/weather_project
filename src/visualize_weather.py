@@ -1,9 +1,18 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+import os
+import glob
+
+data_dir = Path(__file__).parent.parent / "data"
+plots_dir = Path(__file__).parent.parent / "plots"
+plots_dir.mkdir(exist_ok=True)
+
+# Delete all PNG files
+for f in glob.glob(os.path.join(plots_dir, "*.png")):
+    os.remove(f)
 
 # Load the daily summary CSV 
-data_dir = Path(__file__).parent.parent / "data"
 daily_csv_path = data_dir / "weather_forecast_daily.csv"
 if not daily_csv_path.exists():
     raise FileNotFoundError(f"{daily_csv_path} not found. Please run scrape_weather.py first.")
@@ -34,8 +43,8 @@ plt.xticks(rotation=45)
 plt.legend()
 plt.tight_layout()
 # Save plot
-plot_path = data_dir / "daily_avg_temperature.png"
-plt.savefig(plot_path)
+plot_path = plots_dir / "daily_avg_temperature.png"
+plt.savefig("plots/daily_avg_temperature.png")
 print(f"Saved plot to {plot_path}")
 plt.show()
 
@@ -52,8 +61,8 @@ plt.xticks(rotation=45)
 plt.legend()
 plt.tight_layout()
 # Save plot
-plot_path = data_dir / "daily_high_low_temperature.png"
-plt.savefig(plot_path)
+plot_path = plots_dir / "daily_high_low_temperature.png"
+plt.savefig("plots/daily_high_low_temperature.png")
 print(f"Saved plot to {plot_path}")
 plt.show()  
 
