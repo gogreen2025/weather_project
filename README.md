@@ -1,0 +1,1 @@
+This project demonstrates a Python-based weather data pipeline that fetches weather data from the OpenWeather API, stores it as CSV files, and generates data visualizations. The goal is to showcase skills in data collection, processing, and visualization for a real-world dataset.
